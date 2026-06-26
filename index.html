@@ -7,19 +7,20 @@
   <title>Isaac Dasari | Data Engineer & AI Infrastructure</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="page-glow"></div>
   <header class="site-header">
     <nav class="nav container" aria-label="Primary navigation">
-      <a class="brand" href="#top">Isaac Dasari</a>
+      <a class="brand" href="#top"><span class="brand-mark">ID</span><span>Isaac Dasari</span></a>
       <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#focus">Focus</a>
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
+        <a href="#console">Console</a>
+        <a href="#work">Systems</a>
+        <a href="#experience">Depth</a>
+        <a href="#skills">Stack</a>
         <a href="#contact" class="button button-small">Connect</a>
       </div>
     </nav>
@@ -28,32 +29,49 @@
   <main id="top">
     <section class="hero section">
       <div class="container hero-grid">
-        <div>
+        <div class="hero-copy">
           <p class="eyebrow">Data Engineer · AI Infrastructure · ML Platform Systems</p>
-          <h1>Building scalable data and AI platforms for analytics, reliability, and operational intelligence.</h1>
-          <p class="hero-text">I design cloud-native data platforms, event-driven pipelines, observability workflows, and AI infrastructure foundations that help engineering and product teams turn complex operational data into trusted, production-ready insights.</p>
+          <h1>Turning operational complexity into trusted data and AI systems.</h1>
+          <p class="hero-text">I design cloud-native data platforms, event-driven pipelines, observability workflows, and AI infrastructure foundations that help engineering and product teams move from raw signals to reliable decisions.</p>
           <div class="hero-actions">
-            <a class="button" href="#work">View Work</a>
-            <a class="button button-secondary" href="#contact">Connect</a>
-          </div>
-          <div class="metrics">
-            <div><strong>12+ Years</strong><span>Data, software, and platform engineering experience across enterprise and cloud environments.</span></div>
-            <div><strong>Multi-Petabyte Scale</strong><span>Experience building and operating large-scale analytics and data platform foundations.</span></div>
-            <div><strong>Cloud + AI Systems</strong><span>Focused on data platforms, observability, automation, retrieval systems, and ML infrastructure patterns.</span></div>
+            <a class="button" href="#work">Explore Systems</a>
+            <a class="button button-secondary" href="https://www.linkedin.com/in/isaac-dasari-29b986b9" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="button button-secondary" href="https://github.com/isaac-dasari" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
-        <aside class="hero-card">
-          <div class="avatar">ID</div>
-          <h2>Data Platforms & AI Infrastructure</h2>
-          <p>Focused on scalable analytics, distributed processing, cloud-native systems, AI-assisted engineering workflows, and platform reliability.</p>
-          <div class="tag-cloud">
-            <span>AWS</span><span>Redshift</span><span>S3</span><span>Glue</span><span>Spark</span><span>Airflow</span><span>Python</span><span>SQL</span><span>RAG</span><span>Vector Search</span>
+        <aside class="console-card hero-panel" aria-label="Portfolio system console">
+          <div class="panel-top"><span></span><span></span><span></span></div>
+          <p class="console-label">SYSTEM PROFILE</p>
+          <div class="console-row"><span>platform.focus</span><strong>Data + AI Infrastructure</strong></div>
+          <div class="console-row"><span>scale.mode</span><strong>Multi-Petabyte Analytics</strong></div>
+          <div class="console-row"><span>operating.model</span><strong>Reliable · Observable · Cost-Aware</strong></div>
+          <div class="signal-grid">
+            <div><b>12+ yrs</b><small>Engineering depth</small></div>
+            <div><b>Cloud</b><small>Data platforms</small></div>
+            <div><b>AI</b><small>Applied workflows</small></div>
+            <div><b>IEEE</b><small>Community</small></div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="console" class="section console-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Systems Console</p>
+          <h2>Architecture thinking across the data-to-decision path.</h2>
+        </div>
+        <div class="flow">
+          <div><span>01</span><strong>Ingest</strong><p>Events, logs, operational signals, batch and streaming sources.</p></div>
+          <div><span>02</span><strong>Model</strong><p>Curated datasets, metrics, governance, quality, lineage.</p></div>
+          <div><span>03</span><strong>Observe</strong><p>Monitoring, metadata, freshness, cost, failure patterns.</p></div>
+          <div><span>04</span><strong>Optimize</strong><p>SQL review, Spark behavior, workload efficiency, reliability.</p></div>
+          <div><span>05</span><strong>Augment</strong><p>Retrieval, evaluation, AI-assisted triage, operational intelligence.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section section-muted">
       <div class="container two-column">
         <div>
           <p class="eyebrow">About</p>
@@ -66,36 +84,28 @@
       </div>
     </section>
 
-    <section id="focus" class="section section-muted">
-      <div class="container">
-        <p class="eyebrow">Focus Areas</p>
-        <h2>Where I work best</h2>
-        <div class="cards three">
-          <article class="card"><h3>Data Platforms</h3><p>Cloud-native analytics systems, warehouse and lake architecture, governed datasets, orchestration, data quality, and self-service reporting foundations.</p></article>
-          <article class="card"><h3>AI Infrastructure</h3><p>Retrieval-augmented systems, vector search, LLM evaluation, AI observability, agentic workflows, and production-oriented AI platform patterns.</p></article>
-          <article class="card"><h3>Platform Reliability</h3><p>Pipeline monitoring, metadata-driven operations, incident triage, workload optimization, cost-aware architecture, and engineering productivity tooling.</p></article>
-        </div>
-      </div>
-    </section>
-
     <section id="work" class="section">
       <div class="container">
-        <p class="eyebrow">Selected Work</p>
-        <h2>Representative systems and engineering themes</h2>
-        <div class="project-list">
-          <article class="project"><div><h3>Large-Scale Analytics Platforms</h3><p>Designed and operated analytics foundations supporting customer journey analysis, product metrics, operational reporting, and decision-support workflows at multi-petabyte scale.</p></div><p class="tech">Redshift · S3 · Glue · Athena · Spark · Airflow · SQL · Python</p></article>
-          <article class="project"><div><h3>Event-Driven Data Pipelines</h3><p>Built resilient cloud-native pipeline patterns using event-driven architecture, serverless processing, orchestration, retries, monitoring, and operational controls.</p></div><p class="tech">Lambda · EventBridge · SNS · SQS · Glue · Airflow · Terraform</p></article>
-          <article class="project"><div><h3>AI-Assisted Engineering Workflows</h3><p>Developed automation and observability workflows for SQL review, pipeline monitoring, log analysis, operational triage, and engineering productivity.</p></div><p class="tech">Bedrock · LangChain · RAG · Vector Search · Metadata · Logs · Python</p></article>
-          <article class="project"><div><h3>Spark Optimization Intelligence</h3><p>Built approaches for analyzing Spark execution behavior, infrastructure signals, runtime patterns, and recurring failure modes to guide performance and reliability improvements.</p></div><p class="tech">Spark · PySpark · Spark History Server · Runtime Diagnostics · Log Analysis</p></article>
+        <div class="section-heading">
+          <p class="eyebrow">Selected Systems</p>
+          <h2>Representative engineering themes.</h2>
+        </div>
+        <div class="bento-grid">
+          <article class="bento-card bento-large"><span class="card-kicker">Analytics Foundation</span><h3>Large-Scale Analytics Platforms</h3><p>Designed and operated analytics foundations supporting customer journey analysis, product metrics, operational reporting, and decision-support workflows at multi-petabyte scale.</p><p class="tech">Redshift · S3 · Glue · Athena · Spark · Airflow · SQL · Python</p></article>
+          <article class="bento-card"><span class="card-kicker">Pipeline Architecture</span><h3>Event-Driven Data Pipelines</h3><p>Built resilient cloud-native pipeline patterns using event-driven architecture, serverless processing, orchestration, retries, monitoring, and operational controls.</p><p class="tech">Lambda · EventBridge · SNS · SQS · Glue · Terraform</p></article>
+          <article class="bento-card"><span class="card-kicker">Applied AI</span><h3>AI-Assisted Engineering Workflows</h3><p>Developed automation and observability workflows for SQL review, pipeline monitoring, log analysis, operational triage, and engineering productivity.</p><p class="tech">Bedrock · LangChain · RAG · Vector Search · Metadata · Logs</p></article>
+          <article class="bento-card bento-wide"><span class="card-kicker">Distributed Processing</span><h3>Spark Optimization Intelligence</h3><p>Built approaches for analyzing Spark execution behavior, infrastructure signals, runtime patterns, and recurring failure modes to guide performance and reliability improvements.</p><p class="tech">Spark · PySpark · Spark History Server · Runtime Diagnostics · Log Analysis</p></article>
         </div>
       </div>
     </section>
 
     <section id="experience" class="section section-muted">
       <div class="container">
-        <p class="eyebrow">Experience Summary</p>
-        <h2>Engineering depth across platform layers</h2>
-        <div class="timeline">
+        <div class="section-heading">
+          <p class="eyebrow">Experience Depth</p>
+          <h2>Engineering depth across platform layers.</h2>
+        </div>
+        <div class="depth-grid">
           <div><h3>Data Platform Engineering</h3><p>Built and operated large-scale analytical systems that support product metrics, customer journey analytics, operational reporting, and decision-support workflows. Work includes data modeling, warehouse optimization, pipeline design, orchestration, governance, and self-service analytics enablement.</p></div>
           <div><h3>AI Infrastructure & Engineering Productivity</h3><p>Designed practical AI-assisted workflows that connect structured metadata, logs, SQL patterns, and operational signals to help engineering teams investigate issues, improve query quality, monitor pipelines, and reduce manual analysis effort.</p></div>
           <div><h3>Distributed Processing & Optimization</h3><p>Worked across Spark and cloud data processing environments to analyze runtime behavior, diagnose recurring failure patterns, improve workload efficiency, and support more reliable distributed data pipelines.</p></div>
@@ -107,9 +117,11 @@
 
     <section id="skills" class="section">
       <div class="container">
-        <p class="eyebrow">Technical Skills</p>
-        <h2>Tools and systems</h2>
-        <div class="skill-grid">
+        <div class="section-heading">
+          <p class="eyebrow">Technical Stack</p>
+          <h2>Tools and systems.</h2>
+        </div>
+        <div class="stack-grid">
           <div><h3>Data Platforms</h3><p>Redshift, S3, Glue, Athena, Spark, PySpark, Hive, Hadoop, Airflow, MWAA, Redshift Spectrum, QuickSight</p></div>
           <div><h3>AI Infrastructure</h3><p>Bedrock, LangChain, LangGraph, Semantic Kernel, CrewAI, RAG, vector search, FAISS, Pinecone, LLM evaluation, AI observability</p></div>
           <div><h3>Platform Engineering</h3><p>Event-driven architecture, pipeline monitoring, SQL optimization, workload management, cost optimization, data quality, metadata, lineage, governance</p></div>
@@ -127,7 +139,7 @@
 
     <section id="education" class="section">
       <div class="container two-column">
-        <div><p class="eyebrow">Education</p><h2>Academic foundation</h2></div>
+        <div><p class="eyebrow">Education</p><h2>Academic foundation.</h2></div>
         <div class="prose"><p><strong>Master of Science in Computer Science</strong><br />Northern Illinois University</p></div>
       </div>
     </section>
