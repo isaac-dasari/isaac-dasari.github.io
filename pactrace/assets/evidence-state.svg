@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Evidence state mismatch detected by PacTrace</title>
+  <desc id="desc">A current source, stale search index and live API are compared against a consistency contract before an agent uses the evidence.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1"><stop stop-color="#09111E"/><stop offset="1" stop-color="#0D1727"/></linearGradient>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5 0 9Z" fill="#7E94B2"/></marker>
+  </defs>
+  <rect width="1200" height="620" rx="34" fill="url(#bg)"/>
+  <text x="70" y="72" fill="#EAF2FF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="700">The failure PacTrace is designed to catch</text>
+  <text x="70" y="108" fill="#8FA4C2" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17">Every tool call can succeed and the final answer can still be inconsistent.</text>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect x="70" y="165" width="280" height="145" rx="24" fill="#112434" stroke="#2F6572"/>
+    <text x="100" y="205" fill="#7CE3D4" font-size="14" font-weight="700" letter-spacing="1.5">SOURCE OF TRUTH</text>
+    <text x="100" y="246" fill="#FFFFFF" font-size="24" font-weight="700">Iceberg orders</text>
+    <text x="100" y="282" fill="#B7C7DB" font-size="18">Current snapshot S105</text>
+
+    <rect x="460" y="165" width="280" height="145" rx="24" fill="#2B211F" stroke="#735246"/>
+    <text x="490" y="205" fill="#F7B267" font-size="14" font-weight="700" letter-spacing="1.5">DERIVED SYSTEM</text>
+    <text x="490" y="246" fill="#FFFFFF" font-size="24" font-weight="700">Search index</text>
+    <text x="490" y="282" fill="#D8C8BF" font-size="18">Built from snapshot S102</text>
+
+    <rect x="850" y="165" width="280" height="145" rx="24" fill="#172038" stroke="#3E527A"/>
+    <text x="880" y="205" fill="#8FB7FF" font-size="14" font-weight="700" letter-spacing="1.5">LIVE EVIDENCE</text>
+    <text x="880" y="246" fill="#FFFFFF" font-size="24" font-weight="700">Provider API</text>
+    <text x="880" y="282" fill="#C6D3E7" font-size="18">Observed 21 seconds ago</text>
+  </g>
+
+  <path d="M210 310V365H535" fill="none" stroke="#7E94B2" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M600 310V365" fill="none" stroke="#7E94B2" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M990 310V365H665" fill="none" stroke="#7E94B2" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="390" y="385" width="420" height="160" rx="28" fill="#101B2B" stroke="#31445B"/>
+  <text x="430" y="427" fill="#7CE3D4" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">CONSISTENCY CONTRACT</text>
+  <text x="430" y="468" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="700">Search lag must be zero</text>
+  <text x="430" y="502" fill="#BAC8DB" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17">PacTrace sees S102 behind S105 and blocks silent composition.</text>
+  <rect x="625" y="516" width="145" height="40" rx="14" fill="#3A2A22" stroke="#855941"/>
+  <text x="697" y="542" text-anchor="middle" fill="#F7B267" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700">FALLBACK</text>
+</svg>
