@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PacTrace — Provenance and Consistency Tracker</title>
+  <meta name="description" content="PacTrace verifies that evidence from databases, search indexes, APIs and tools represents compatible source states before an AI agent or application combines it.">
+  <meta name="theme-color" content="#08101b">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="PacTrace home">
+        <img src="assets/logo.svg" alt="">
+        <span>PacTrace<small>Provenance And Consistency Tracker</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#problem">Problem</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#boundaries">Boundaries</a>
+        <a href="#validation">Validation</a>
+        <a class="button small" href="https://github.com/isaac-dasari/PacTrace">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Runtime evidence consistency</p>
+          <h1>Correct facts can still produce the wrong answer.</h1>
+          <p class="lede">PacTrace checks provenance, version lineage, freshness and repeatability before an agent or application combines evidence from independently refreshed systems.</p>
+          <div class="hero-actions">
+            <a class="button" href="#use-cases">See production use cases</a>
+            <a class="button secondary" href="#architecture">Read the architecture</a>
+          </div>
+          <p class="hero-note">Python control plane. Rust reconciliation data plane. Arrow IPC. Explicit versioned contracts.</p>
+        </div>
+        <div class="visual-frame">
+          <img src="assets/evidence-state.svg" alt="PacTrace detecting a stale search index against a newer source snapshot">
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="problem">
+      <div class="shell problem-grid">
+        <div class="problem-copy">
+          <p class="eyebrow">The operational gap</p>
+          <h2>Tool success is not evidence consistency.</h2>
+          <p class="lede">An Iceberg query can succeed. Search can return results. An API can answer in 80 ms. None of that proves the observations describe the same underlying state.</p>
+          <div class="callout">PacTrace is designed for the interval between “the tools returned data” and “the application is allowed to reason over it.”</div>
+        </div>
+        <div class="fact-list">
+          <div class="fact"><strong>Source</strong><span>Orders are at snapshot S105.</span></div>
+          <div class="fact"><strong>Derived index</strong><span>Search was built from S102.</span></div>
+          <div class="fact"><strong>Live API</strong><span>Provider status was observed 21 seconds ago.</span></div>
+          <div class="fact"><strong>Agent</strong><span>All three calls succeeded and look individually plausible.</span></div>
+          <div class="fact"><strong>PacTrace</strong><span>The contract requires zero search lag, so stale indexed evidence cannot be silently composed with S105.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="use-cases">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Where this matters</p>
+          <h2>Use cases driven by state drift, not by model choice.</h2>
+          <p>PacTrace sits below the model and above independently refreshed data systems. The same failure mode appears in incident response, RAG, risk systems and analytics copilots.</p>
+        </div>
+        <div class="use-grid">
+          <article class="use-card">
+            <span class="label">Incident response</span>
+            <h3>Do not correlate current telemetry with an older incident index without knowing it.</h3>
+            <p>An investigation service reads current event data from a lakehouse, searches an incident index and checks a live provider API. PacTrace verifies that the search derivation is compatible with the source state required by the incident policy.</p>
+            <p class="scenario"><strong>Outcome:</strong> use the index when it is current; trigger a bounded reconciliation path when it is not.</p>
+          </article>
+          <article class="use-card">
+            <span class="label">RAG and support</span>
+            <h3>Know when retrieval is behind the documents it claims to represent.</h3>
+            <p>A vector or keyword index can be healthy while its source documents have already changed. PacTrace treats the index as derived evidence and compares its recorded source version with independently observed source state.</p>
+            <p class="scenario"><strong>Outcome:</strong> prevent an answer from being presented as current when retrieval is known to lag.</p>
+          </article>
+          <article class="use-card">
+            <span class="label">Fraud and risk</span>
+            <h3>Make feature freshness an enforceable contract instead of a dashboard note.</h3>
+            <p>A decision may combine a transaction table, materialized features, device intelligence and a live external signal. Each source can carry a different version or freshness guarantee.</p>
+            <p class="scenario"><strong>Outcome:</strong> reject or disclose evidence that violates the risk workflow’s freshness and repeatability requirements.</p>
+          </article>
+          <article class="use-card">
+            <span class="label">Analytics copilots</span>
+            <h3>Separate semantic correctness from state correctness.</h3>
+            <p>A semantic layer can define what “revenue” means. PacTrace answers a different question: whether the observations used to compute or explain revenue are compatible enough to reason over together right now.</p>
+            <p class="scenario"><strong>Outcome:</strong> semantic layers define meaning; PacTrace validates observational coherence.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="architecture">
+      <div class="shell arch-grid">
+        <div class="visual-frame">
+          <img src="assets/architecture.svg" alt="PacTrace Python control plane and Rust data plane architecture">
+        </div>
+        <div class="arch-copy">
+          <p class="eyebrow">Architecture</p>
+          <h2>Policy stays readable. Data-heavy reconciliation gets its own execution boundary.</h2>
+          <p>The Python control plane owns source semantics, consistency contracts, adapter plugins and decisions. The Rust data plane receives a domain-neutral Arrow stream for bounded indexed-versus-current reconciliation.</p>
+          <p>The service boundary is intentionally narrow. Rust does not become another search engine or distributed query engine, and source adapters remain responsible for efficient change discovery.</p>
+          <div class="pill-row">
+            <span class="pill">chronamesh-style semantics, renamed PacTrace</span>
+            <span class="pill">Arrow IPC</span>
+            <span class="pill">Rust 1.85+</span>
+            <span class="pill">Python 3.11 / 3.12</span>
+            <span class="pill">Versioned schemas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Execution path</p>
+          <h2>A small number of explicit decisions.</h2>
+        </div>
+        <div class="steps">
+          <article class="step"><h3>Collect evidence</h3><p>Adapters normalize source-native semantics such as snapshot lineage, observation time and repeatability.</p></article>
+          <article class="step"><h3>Evaluate a contract</h3><p>The caller defines what is acceptable for this task rather than relying on one global freshness rule.</p></article>
+          <article class="step"><h3>Reconcile when needed</h3><p>For bounded stale-index scenarios, the Rust data plane compares indexed and current state over Arrow IPC.</p></article>
+          <article class="step"><h3>Return an explicit decision</h3><p>Accept, accept with disclosure, require fallback, or reject. Uncertainty is not silently converted into certainty.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="boundaries">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Clear boundaries</p>
+          <h2>PacTrace does not try to own every data reliability problem.</h2>
+          <p>The project is strongest when it stays focused on runtime evidence-state compatibility.</p>
+        </div>
+        <div class="compare">
+          <table>
+            <thead><tr><th>Layer</th><th>Primary question</th><th>PacTrace relationship</th></tr></thead>
+            <tbody>
+              <tr><td>Semantic layer</td><td>What does this metric, dimension or business concept mean?</td><td>Complementary. PacTrace checks whether the observations behind that meaning are coherent now.</td></tr>
+              <tr><td>Lineage catalog</td><td>Where did this dataset come from and what depends on it?</td><td>Complementary. PacTrace uses source/derivation evidence at runtime rather than replacing enterprise lineage.</td></tr>
+              <tr><td>Observability</td><td>Is the pipeline or service healthy?</td><td>Complementary. A healthy index can still be behind its source.</td></tr>
+              <tr><td>Search / vector database</td><td>Which items are relevant to this query?</td><td>PacTrace treats search as derived evidence and can validate its source-state relationship.</td></tr>
+              <tr><td>PacTrace</td><td>Can these independently observed facts be safely used together for this task?</td><td>Core responsibility.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="validation">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Implemented, not illustrated</p>
+          <h2>The reference path uses real storage, search and a cross-language runtime.</h2>
+          <p>The repository includes a PyIceberg source, an independent SQLite FTS5 index, controlled source/index drift, consistency evaluation, a Rust Arrow reconciliation service, container builds and Python-to-Rust integration tests.</p>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-card">
+            <div class="metric teal">Real drift</div>
+            <h3>Source advances while search stays behind.</h3>
+            <p>The reference scenario builds search from one Iceberg snapshot, advances the source without refreshing search, and verifies that stale search cannot see the new record.</p>
+          </article>
+          <article class="proof-card">
+            <div class="metric blue">Two planes</div>
+            <h3>Python calls Rust over versioned Arrow IPC.</h3>
+            <p>The service validates protocol and schema versions, reconciles bounded state and returns generic row identities with index/delta provenance.</p>
+          </article>
+        </div>
+        <pre class="code" aria-label="PacTrace consistency contract example"><code>{
+  <span class="dim">"schema_version"</span>: "pactrace.contract/v1",
+  <span class="dim">"name"</span>: "incident-investigation",
+  <span class="dim">"requirements"</span>: [
+    { "resource": "incidents", "require_repeatable": true },
+    { "resource": "incident_search", "max_source_lag": 0 },
+    { "resource": "provider_status", "max_age_seconds": 30 }
+  ]
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="shell boundary-grid">
+        <article class="boundary">
+          <p class="eyebrow">Day-one scope</p>
+          <h3>What the project is built to do now</h3>
+          <ul>
+            <li>Represent source versions, derivations, freshness and repeatability explicitly.</li>
+            <li>Evaluate task-specific consistency contracts.</li>
+            <li>Detect known source/index drift rather than trusting derived systems to declare themselves current.</li>
+            <li>Run bounded indexed/current reconciliation through a domain-neutral Rust service.</li>
+          </ul>
+        </article>
+        <article class="boundary">
+          <p class="eyebrow">Not claimed</p>
+          <h3>What PacTrace is not</h3>
+          <ul>
+            <li>Not a global distributed transaction protocol.</li>
+            <li>Not a semantic layer, lineage catalog or observability replacement.</li>
+            <li>Not a distributed SQL engine or search engine.</li>
+            <li>Not a claim that every future connector is already production-hardened.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell cta">
+        <div>
+          <p class="eyebrow">Open source</p>
+          <h2>Looking for maintainers who want to own a real system boundary.</h2>
+          <p>Current ownership areas include Iceberg and analytical systems, search connectors, MCP evidence propagation, observability, reliability testing and release engineering.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="button" href="https://github.com/isaac-dasari/PacTrace">View the repository</a>
+          <a class="button secondary" href="https://github.com/isaac-dasari/PacTrace/issues">Open issues</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>PacTrace — Provenance And Consistency Tracker</span>
+      <div class="footer-links">
+        <a href="https://github.com/isaac-dasari/PacTrace">GitHub</a>
+        <a href="https://isaac-dasari.github.io/">Isaac Dasari</a>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
