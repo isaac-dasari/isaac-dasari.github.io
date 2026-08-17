@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">PacTrace two-plane architecture</title>
+  <desc id="desc">Applications call the Python control plane for provenance and consistency decisions, with Arrow reconciliation delegated to the Rust data plane.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#08101D"/><stop offset="1" stop-color="#0E1728"/></linearGradient>
+    <linearGradient id="cp" x1="0" x2="1"><stop stop-color="#17384A"/><stop offset="1" stop-color="#153047"/></linearGradient>
+    <linearGradient id="dp" x1="0" x2="1"><stop stop-color="#3A2B22"/><stop offset="1" stop-color="#2B2430"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-opacity=".22"/></filter>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8CA4C4"/></marker>
+  </defs>
+  <rect width="1200" height="720" rx="36" fill="url(#bg)"/>
+  <text x="70" y="72" fill="#EAF2FF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="700">PacTrace runtime</text>
+  <text x="70" y="108" fill="#8FA4C2" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17">Provenance and consistency checks before evidence is composed into an agent decision.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="155" width="1060" height="110" rx="24" fill="#101C2D" stroke="#26374D"/>
+    <text x="110" y="198" fill="#7CE3D4" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="2">CALLERS</text>
+    <text x="110" y="232" fill="#EAF2FF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="650">AI agent · MCP workflow · incident service · analytics copilot</text>
+  </g>
+
+  <path d="M600 265V310" stroke="#8CA4C4" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="325" width="680" height="275" rx="28" fill="url(#cp)" stroke="#2E6074"/>
+    <text x="110" y="372" fill="#7CE3D4" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="2">PYTHON CONTROL PLANE</text>
+    <text x="110" y="410" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="27" font-weight="700">Decide whether evidence can be trusted together</text>
+    <g fill="#D8E7F7" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18">
+      <text x="110" y="458">Source adapters and plugin registry</text>
+      <text x="110" y="497">Version, lineage, freshness and repeatability semantics</text>
+      <text x="110" y="536">Consistency contracts and policy evaluation</text>
+      <text x="110" y="575">Accept · disclose · fallback · reject</text>
+    </g>
+  </g>
+
+  <path d="M750 462H815" stroke="#8CA4C4" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="760" y="438" fill="#8FA4C2" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14">Arrow IPC</text>
+
+  <g filter="url(#shadow)">
+    <rect x="830" y="325" width="300" height="275" rx="28" fill="url(#dp)" stroke="#71513F"/>
+    <text x="870" y="372" fill="#F7B267" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="2">RUST DATA PLANE</text>
+    <text x="870" y="410" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="700">Reconcile bounded state</text>
+    <g fill="#E9DED8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17">
+      <text x="870" y="458">Validate protocol and schema</text>
+      <text x="870" y="497">Compare indexed vs current rows</text>
+      <text x="870" y="536">Return stable IDs + provenance</text>
+      <text x="870" y="575">Deterministic, domain-neutral</text>
+    </g>
+  </g>
+
+  <g fill="#111C2B" stroke="#31445B">
+    <rect x="150" y="635" width="190" height="52" rx="18"/>
+    <rect x="390" y="635" width="190" height="52" rx="18"/>
+    <rect x="630" y="635" width="190" height="52" rx="18"/>
+    <rect x="870" y="635" width="190" height="52" rx="18"/>
+  </g>
+  <g fill="#C8D6EA" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" text-anchor="middle">
+    <text x="245" y="668">Iceberg / lakehouse</text>
+    <text x="485" y="668">Search / vector index</text>
+    <text x="725" y="668">APIs / MCP tools</text>
+    <text x="965" y="668">Files / databases</text>
+  </g>
+</svg>
