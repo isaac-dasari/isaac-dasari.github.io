@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">PacTrace mark</title>
+  <desc id="desc">Three evidence paths converging into a verified trace.</desc>
+  <rect width="64" height="64" rx="16" fill="#0B1220"/>
+  <path d="M14 18h12c8 0 12 4 12 10s-4 10-12 10H20v10" fill="none" stroke="#7CE3D4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="47" cy="18" r="4" fill="#F7B267"/>
+  <circle cx="47" cy="32" r="4" fill="#8FB7FF"/>
+  <circle cx="47" cy="46" r="4" fill="#7CE3D4"/>
+  <path d="M38 28c5 0 5-10 9-10M38 32h9M38 36c5 0 5 10 9 10" fill="none" stroke="#D7E1F2" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
+</svg>
